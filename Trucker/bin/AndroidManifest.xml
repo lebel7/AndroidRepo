@@ -7,7 +7,9 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
-
+	<uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -25,6 +27,14 @@
         <activity
             android:name="com.lebel.trucker.ActViewStaff"
             android:label="@string/title_activity_act_view_staff" >
+        </activity>
+        <activity
+            android:name="com.lebel.trucker.Act"
+            android:label="@string/title_activity_" >
+        </activity>
+        <activity
+            android:name="com.lebel.trucker.ActProductSingleList"
+            android:label="@string/title_activity_act_product_single_list" >
         </activity>
     </application>
 

@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
 
 	protected void handleBtnStaffList_Click(Button v) {
 		// TODO Auto-generated method stub
-		Intent intent = new Intent(this, ActViewStaff.class);
+		Intent intent = new Intent(this, ActProductSingleList.class);
 		startActivity(intent);
 	}
 
