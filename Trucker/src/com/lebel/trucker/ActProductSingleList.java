@@ -57,14 +57,14 @@ public class ActProductSingleList extends Activity {
         private ArrayList<String> ProductList;
         private ConfigPersistent _config;
         private com.ianywhere.ultralitejni12.Connection _dbconn;
-        private static final int defaultPort = 9494;
-        private static final String host = "192.168.10.237";
+        private static final int defaultPort = 9191;
+        private static final String host = "192.168.10.248";
         //private static final String host = "testserver";
         //private static final String host = "10.0.2.2";
         private static final String defaultUsername = "dba";
         private static final String defaultPassword = "sql";
         //private static final String db = "proper_remote.udb";
-        private static final String db = "trucker_remote.udb";
+        private static final String db = "brink_remote.udb";
         protected ProgressDialog dialog;
         int progressIncrement = 0;
         @Override
@@ -165,14 +165,15 @@ public class ActProductSingleList extends Activity {
                 _dbconn = DatabaseManager.connect(_config);
 
                 //Sync
-                SyncParms sp = _dbconn.createSyncParms("dba", "trucker_scriptversion");
+                SyncParms sp = _dbconn.createSyncParms("dba", "brink_scriptversion");
                 sp.setPassword("sql"); // delete me
-                sp.setPublications("trucker_publication"); // delete me
+                sp.setPublications("brink_publication"); // delete me
                 StreamHTTPParms httpParms = sp.getStreamParms();
                 httpParms.setHost(host);
                 httpParms.setPort(defaultPort);
                 _dbconn.synchronize(sp);
-                //_dbconn.commit(); delete me
+                //_dbconn.commit(); delete me if causes any errors
+                
 
                 //Query
                 String qry = "SELECT TOP 20 * FROM DBA.Product WHERE DBA.Product.Artist IS NOT NULL ORDER BY DBA.Product.Artist ASC";
@@ -182,12 +183,13 @@ public class ActProductSingleList extends Activity {
                 if (!rs.next()) {
                     System.out.println("No records found");
                 } else {
-                    while (rs.next()) {
+                    do {
                         ProductList.add(rs.getString(1));
-                    }
+                    } while (rs.next());
                     rs.close();
                     ps.close();
                 }
+                
             }
             catch (IOException e) {
                 e.printStackTrace();
