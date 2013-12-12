@@ -35,9 +35,9 @@ public class ActProductSingleList extends Activity {
 		try {
             setupUiEvents();
         } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         } catch (ULjException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
 	}
 
@@ -63,17 +63,16 @@ public class ActProductSingleList extends Activity {
         //private static final String host = "10.0.2.2";
         private static final String defaultUsername = "dba";
         private static final String defaultPassword = "sql";
-        //private static final String db = "proper_remote.udb";
         private static final String db = "brink_remote.udb";
         protected ProgressDialog dialog;
         int progressIncrement = 0;
         @Override
         protected void onPreExecute() {
-            //copyDialog = ProgressDialog.show(ActProduct.this.getApplicationContext(), "Cleaning up Database Directory", "Please Wait");
             dialog = new ProgressDialog(ActProductSingleList.this);
             CharSequence message = "Working hard...very hard...";
             CharSequence title = "Please Wait";
             dialog.setCancelable(true);
+            dialog.setCanceledOnTouchOutside(false);
             dialog.setMessage(message);
             dialog.setTitle(title);
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -88,15 +87,12 @@ public class ActProductSingleList extends Activity {
             if (result != null) {
             	lv.setAdapter(new ArrayAdapter<String>(ActProductSingleList.this, android.R.layout.simple_list_item_1, result));
             }
-            //lv.setAdapter(new ArrayAdapter<String>(ActProductSingleList.this, android.R.layout.simple_list_item_1, result));
-            //Stop progress bar
             dialog.dismiss();
             Toast.makeText(ActProductSingleList.this, "Android successfully copied the Database to the device", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         protected void onProgressUpdate(Integer... values) {
-            //super.onProgressUpdate(values);    //To change body of overridden methods use File | Settings | File Templates.
             dialog.incrementProgressBy(progressIncrement);
         }
 
@@ -105,8 +101,6 @@ public class ActProductSingleList extends Activity {
 
             try {
                 String dbFullName = ActProductSingleList.this.getApplicationInfo().dataDir + "/" + db;
-                //String dbShadowFullName = dbTargetPath + "/" + dbShadowFile;
-                //File fileDir = new File(String.valueOf(dbTargetPath));   // current db directory
 
                 File dbFile = new File(dbFullName);
                 FilenameFilter textFilter = new FilenameFilter() {
@@ -119,21 +113,17 @@ public class ActProductSingleList extends Activity {
                         }
                     }
                 };
-                //int deleteCount = 0;
                 File[] files = dbFile.listFiles(textFilter);
                 if (files != null) {
                 	for (File file : files) {
                         if (file.exists()) {
                             file.delete();
-                            //deleteCount += 1;
-                            //System.out.print("Database file deleted !");
                         }
                 	}
                 
                 }
-                //return deleteCount >= 1;  //To change body of implemented methods use File | Settings | File Templates.
+                
                 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Copy Database to Directory  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                //String dbFullName = dbTargetPath + "/" + db;
                 InputStream myInput = null;
 
                 File file = new File(dbFullName);
@@ -154,8 +144,6 @@ public class ActProductSingleList extends Activity {
 
                 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Copy Database to Directory  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-                //ArrayList<String> prodList = new ArrayList<String>();
-
                 //Connect
                 _config = DatabaseManager.createConfigurationFileAndroid(db, ActProductSingleList.this.getApplicationContext());
                 _config.setUserName(defaultUsername);
@@ -166,13 +154,12 @@ public class ActProductSingleList extends Activity {
 
                 //Sync
                 SyncParms sp = _dbconn.createSyncParms("dba", "brink_scriptversion");
-                sp.setPassword("sql"); // delete me
-                sp.setPublications("brink_publication"); // delete me
+                sp.setPassword("sql");
+                sp.setPublications("brink_publication");
                 StreamHTTPParms httpParms = sp.getStreamParms();
                 httpParms.setHost(host);
                 httpParms.setPort(defaultPort);
                 _dbconn.synchronize(sp);
-                //_dbconn.commit(); delete me if causes any errors
                 
 
                 //Query
@@ -195,7 +182,7 @@ public class ActProductSingleList extends Activity {
                 e.printStackTrace();
             }
             catch (ULjException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                e.printStackTrace();
             }
             return ProductList;
         }
