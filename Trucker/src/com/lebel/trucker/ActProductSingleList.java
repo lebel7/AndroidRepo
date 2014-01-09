@@ -49,11 +49,13 @@ public class ActProductSingleList extends Activity {
 	}
 	
 	private void setupUiEvents() throws IOException, ULjException {
-        new doTaskAsync().execute(this.getApplicationInfo().dataDir);
+		doTaskAsync doTask = new doTaskAsync();
+        doTask.execute();
     }
+	
 
     //Clean Directory, Copy DB, Sync remote DB and select to populate our list
-    private class doTaskAsync extends AsyncTask<String, Integer, ArrayList <String>> {
+    private class doTaskAsync extends AsyncTask<Void, Integer, ArrayList <String>> {
         private ArrayList<String> ProductList;
         private ConfigPersistent _config;
         private com.ianywhere.ultralitejni12.Connection _dbconn;
@@ -97,7 +99,7 @@ public class ActProductSingleList extends Activity {
         }
 
         @Override
-        protected ArrayList <String> doInBackground(String... dbTargetPath) {
+        protected ArrayList <String> doInBackground(Void... unused) {
 
             try {
                 String dbFullName = ActProductSingleList.this.getApplicationInfo().dataDir + "/" + db;
@@ -191,8 +193,9 @@ public class ActProductSingleList extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		super.onDestroy();
 		Log.i("My AsyncTask [doTaskAsync]", System.currentTimeMillis() / 1000L + "  onDestroy()");
+		//doTaskAsync.cancel(true);
+		super.onDestroy();
 	}
 
 }
