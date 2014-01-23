@@ -59,6 +59,7 @@ public class ProductService {
 			productItem.e("ShortDescription").t(String.format("%s", prod.getShortDescription()));
 			productItem.e("Barcode").t(String.format("%s", prod.getBarcode()));
 			productItem.e("OnHand").t(String.format("%s", prod.getOnHand()));
+			productItem.e("DealerPrice").t(String.format("%s", prod.getDealerPrice()));
 			productItem.e("BinNo").t(String.format("%s", prod.getBinNo()));
 			productItem.e("Price1").t(String.format("%s", prod.getPrice1()));
 			productItem.e("OutOfStock").t(String.format("%s", prod.getOutOfStock()));
@@ -121,6 +122,7 @@ public class ProductService {
 				productItem.e("ShortDescription").t(String.format("%s", prod.getShortDescription()));
 				productItem.e("Barcode").t(String.format("%s", prod.getBarcode()));
 				productItem.e("OnHand").t(String.format("%s", prod.getOnHand()));
+				productItem.e("DealerPrice").t(String.format("%s", prod.getDealerPrice()));
 				productItem.e("BinNo").t(String.format("%s", prod.getBinNo()));
 				productItem.e("Price1").t(String.format("%s", prod.getPrice1()));
 				productItem.e("OutOfStock").t(String.format("%s", prod.getOutOfStock()));

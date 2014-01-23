@@ -35,7 +35,7 @@ public class ProductDAO {
 	
 	public Product GetProductByBarcode(String barcode) {
 		final String qry = new String("SELECT p.ProductId, p.SuppCode, p.SupplierCat, p.Format, " +
-			"p.Artist, p.Title, p.ShortDesc, p.Barcode, p.OnHand, p.BinNo, " +
+			"p.Artist, p.Title, p.ShortDesc, p.Barcode, p.OnHand, p.DealerPrice, p.BinNo, " +
 			"p.Price1, p.OutOfStock FROM Product p WHERE p.Barcode = " + barcode);
 		Product prod = new Product();
 		Connection dbcon = getConnection();
@@ -55,8 +55,9 @@ public class ProductDAO {
 					prod.setShortDescription(rs.getString("ShortDesc"));
 					prod.setBarcode(rs.getString("Barcode"));
 					prod.setOnHand(rs.getInt("OnHand"));
+					prod.setDealerPrice(rs.getFloat("DealerPrice"));
 					prod.setBinNo(rs.getString("BinNo"));
-					prod.setPrice1(rs.getInt("Price1"));
+					prod.setPrice1(rs.getFloat("Price1"));
 					prod.setOutOfStock(rs.getInt("OutOfStock"));
 				}
 			} catch (SQLException e) {
@@ -77,7 +78,7 @@ public class ProductDAO {
 	
 	public List<Product> GetTop20Products() {
 		final String qry = new String("SELECT TOP 20 p.ProductId, p.SuppCode, p.SupplierCat, p.Format, " +
-				"p.Artist, p.Title, p.ShortDesc, p.Barcode, p.OnHand, p.BinNo, " +
+				"p.Artist, p.Title, p.ShortDesc, p.Barcode, p.OnHand, p.DealerPrice, p.BinNo, " +
 				"p.Price1, p.OutOfStock FROM Product p WHERE p.SuppCode = 'PROP' AND " +
 				"p.Artist <> '' AND p.Title <> '' AND p.Barcode <> '' AND p.Price1 > 0 " +
 				"AND p.OnHand > 0 ORDER BY p.ProductId ASC");
@@ -100,8 +101,9 @@ public class ProductDAO {
 					prod.setShortDescription(rs.getString("ShortDesc"));
 					prod.setBarcode(rs.getString("Barcode"));
 					prod.setOnHand(rs.getInt("OnHand"));
+					prod.setDealerPrice(rs.getFloat("DealerPrice"));
 					prod.setBinNo(rs.getString("BinNo"));
-					prod.setPrice1(rs.getInt("Price1"));
+					prod.setPrice1(rs.getFloat("Price1"));
 					prod.setOutOfStock(rs.getInt("OutOfStock"));
 					prodList.add(prod);
 				}

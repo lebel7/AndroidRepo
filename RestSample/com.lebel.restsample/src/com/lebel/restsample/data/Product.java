@@ -11,6 +11,7 @@ public class Product implements java.io.Serializable {
 	private String ShortDescription;
 	private String Barcode;
 	private int OnHand;
+	private float DealerPrice;
 	private String BinNo;
 	private float Price1;
 	private int OutOfStock;
@@ -20,8 +21,8 @@ public class Product implements java.io.Serializable {
 
 	public Product(int productId, String suppCode, String supplierCat,
 			String format, String artist, String title,
-			String shortDescription, String barcode, int onHand, String binNo,
-			float price1, int outOfStock) {
+			String shortDescription, String barcode, int onHand,
+			float dealerPrice, String binNo, float price1, int outOfStock) {
 		ProductId = productId;
 		SuppCode = suppCode;
 		SupplierCat = supplierCat;
@@ -31,6 +32,7 @@ public class Product implements java.io.Serializable {
 		ShortDescription = shortDescription;
 		Barcode = barcode;
 		OnHand = onHand;
+		DealerPrice = dealerPrice;
 		BinNo = binNo;
 		Price1 = price1;
 		OutOfStock = outOfStock;
@@ -108,6 +110,14 @@ public class Product implements java.io.Serializable {
 		OnHand = onHand;
 	}
 
+	public float getDealerPrice() {
+		return DealerPrice;
+	}
+
+	public void setDealerPrice(float dealerPrice) {
+		DealerPrice = dealerPrice;
+	}
+
 	public String getBinNo() {
 		return BinNo;
 	}
@@ -130,6 +140,10 @@ public class Product implements java.io.Serializable {
 
 	public void setOutOfStock(int outOfStock) {
 		OutOfStock = outOfStock;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }
