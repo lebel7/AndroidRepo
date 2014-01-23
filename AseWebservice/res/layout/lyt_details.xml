@@ -1,0 +1,249 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lytOutter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="0dp"
+    tools:context=".ActDetails" >
+    
+     <LinearLayout
+         android:id="@+id/lytInnerTop"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:background="#666666" >
+
+         <ImageView
+             android:id="@+id/imgDetailsTop"
+             android:layout_gravity="fill_horizontal"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="1"
+             android:contentDescription="@string/img_detail_center"
+             android:src="@drawable/details_icon" />
+
+     </LinearLayout>
+
+     <LinearLayout
+         android:id="@+id/lytInnerBottom"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical" >
+
+         <LinearLayout
+             android:id="@+id/lytDetailImage"
+             android:layout_width="fill_parent"
+             android:layout_height="0dp"
+             android:layout_weight="1"
+             android:background="#e5e5e5"
+             android:orientation="horizontal" >
+
+             <ImageView
+                 android:id="@+id/imgAlbum"
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+                 android:contentDescription="@string/img_detail_center"
+                 android:src="@drawable/nopic" />
+
+             <LinearLayout
+                 android:id="@+id/lytDetailTitle"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:background="#e5e5e5"
+                 android:orientation="vertical" >
+
+                 <TextView android:text="@string/defaultLabelText"
+                     android:id="@+id/txtv_Artist"
+                     android:layout_width="fill_parent"
+                     android:layout_height="wrap_content"
+                  	 android:layout_margin="@dimen/activity_vertical_margin"
+                     android:layout_weight="1" >
+
+                     <requestFocus />
+
+                 </TextView>
+
+                 <TextView android:text="@string/defaultLabelText"
+                     android:id="@+id/txtv_Title"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginTop="@dimen/fiveDp_margin"
+                 	 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                     android:layout_weight="1"
+                     android:gravity="center">
+
+                     <requestFocus />
+                 </TextView>
+              
+          </LinearLayout>
+         </LinearLayout>
+         
+         <LinearLayout
+             android:id="@+id/lytDetailMain"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical" >
+
+             <LinearLayout
+                 android:id="@+id/lytShortDesc"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical" >
+                 
+                 <TextView android:id="@+id/lblShortDesc"
+                 android:layout_margin="@dimen/activity_vertical_margin"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+                 
+                 <TextView android:id="@+id/txtvShortDesc"
+                 android:layout_margin="@dimen/activity_vertical_margin"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+             </LinearLayout>
+             
+             <LinearLayout
+                 android:id="@+id/lytISBN"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal" >
+				 
+                 <TextView
+                 android:id="@+id/lblISBN"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+                 
+                 <TextView
+                 android:id="@+id/txtvISBN"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+			</LinearLayout>
+            
+            <LinearLayout
+                 android:id="@+id/lytFormat"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal" >
+				 
+                <TextView
+                 android:id="@+id/lblFormat"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+                
+                <TextView
+                 android:id="@+id/txtvFormat"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+			</LinearLayout>
+			
+            <LinearLayout
+                 android:id="@+id/lytBinNumber"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal" >
+				 
+                <TextView
+                 android:id="@+id/lblBinNumber"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+                
+                <TextView
+                 android:id="@+id/txtvBinNumber"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+			</LinearLayout>
+			
+            <LinearLayout
+                 android:id="@+id/lytOutOfStock"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal" >
+				 
+                <TextView
+                 android:id="@+id/lblOutOfStock"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+                
+                <TextView
+                 android:id="@+id/txtvOutOfStock"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+			</LinearLayout>
+			
+            <LinearLayout
+                 android:id="@+id/lytOnHand"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal" >
+				 
+                <TextView
+                 android:id="@+id/lblOnHand"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+                
+                <TextView
+                 android:id="@+id/txtvOnHand"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+			</LinearLayout>
+			
+            <LinearLayout
+                 android:id="@+id/lytPrice"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal" >
+				 
+                <TextView
+                 android:id="@+id/lblPrice"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+                
+                <TextView
+                 android:id="@+id/txtvPrice"
+                 android:layout_marginTop="@dimen/fiveDp_margin"
+                 android:layout_marginLeft="@dimen/activity_vertical_margin"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/defaultLabelText" />
+			</LinearLayout>
+				 
+		</LinearLayout>
+
+     </LinearLayout>
+
+</LinearLayout>
