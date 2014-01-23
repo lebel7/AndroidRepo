@@ -24,13 +24,13 @@ public class ProductService {
 	ProductDAO proddao = new ProductDAO();
 	
 	@GET
-	@Path("/getProductByIdInJSON/{id}")
+	@Path("/getProductByIdInJSON/{barcode}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getProductByIdInJSON(@PathParam("id") int id) {
+	public String getProductByBarcodeInJSON(@PathParam("barcode") String barcode) {
 		String retvalue = "";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			retvalue = mapper.writeValueAsString(proddao.GetProductById(id));
+			retvalue = mapper.writeValueAsString(proddao.GetProductByBarcode(barcode));
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -42,17 +42,17 @@ public class ProductService {
 	}
 	
 	@GET
-	@Path("/getProductByIdInXML/{id}")
+	@Path("/getProductByIdInXML/{barcode}")
 	@Produces(MediaType.APPLICATION_XML)
-	public String getProductByIdInXML(@PathParam("id") int id) {
+	public String getProductByBarcodeInXML(@PathParam("barcode") String barcode) {
 		String retvalue = "";
 		try {
-			Product prod = proddao.GetProductById(id);
+			Product prod = proddao.GetProductByBarcode(barcode);
 			XMLBuilder builder = XMLBuilder.create("Products");
 			XMLBuilder productItem = builder.elem("Product");
 			productItem.e("ProductId").t(String.format("%s", prod.getProductId()));
-			productItem.e("SupCode").t(String.format("%s", prod.getSupCode()));
-			productItem.e("SuplierCat").t(String.format("%s", prod.getSuplierCat()));
+			productItem.e("SuppCode").t(String.format("%s", prod.getSuppCode()));
+			productItem.e("SupplierCat").t(String.format("%s", prod.getSupplierCat()));
 			productItem.e("Format").t(String.format("%s", prod.getFormat()));
 			productItem.e("Artist").t(String.format("%s", prod.getArtist()));
 			productItem.e("Title").t(String.format("%s", prod.getTitle()));
@@ -113,8 +113,8 @@ public class ProductService {
 			for (Product prod : gotProductList) {
 				XMLBuilder productItem = builder.elem("Product");
 				productItem.e("ProductId").t(String.format("%s", prod.getProductId()));
-				productItem.e("SupCode").t(String.format("%s", prod.getSupCode()));
-				productItem.e("SuplierCat").t(String.format("%s", prod.getSuplierCat()));
+				productItem.e("SuppCode").t(String.format("%s", prod.getSuppCode()));
+				productItem.e("SupplierCat").t(String.format("%s", prod.getSupplierCat()));
 				productItem.e("Format").t(String.format("%s", prod.getFormat()));
 				productItem.e("Artist").t(String.format("%s", prod.getArtist()));
 				productItem.e("Title").t(String.format("%s", prod.getTitle()));

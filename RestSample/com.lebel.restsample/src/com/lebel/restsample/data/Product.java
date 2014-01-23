@@ -1,9 +1,10 @@
 package com.lebel.restsample.data;
 
-public class Product {
+public class Product implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	private int ProductId;
-	private String SupCode;
-	private String SuplierCat;
+	private String SuppCode;
+	private String SupplierCat;
 	private String Format;
 	private String Artist;
 	private String Title;
@@ -17,13 +18,13 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(int productId, String supCode, String suplierCat,
+	public Product(int productId, String suppCode, String supplierCat,
 			String format, String artist, String title,
 			String shortDescription, String barcode, int onHand, String binNo,
 			float price1, int outOfStock) {
 		ProductId = productId;
-		SupCode = supCode;
-		SuplierCat = suplierCat;
+		SuppCode = suppCode;
+		SupplierCat = supplierCat;
 		Format = format;
 		Artist = artist;
 		Title = title;
@@ -43,20 +44,20 @@ public class Product {
 		ProductId = productId;
 	}
 
-	public String getSupCode() {
-		return SupCode;
+	public String getSuppCode() {
+		return SuppCode;
 	}
 
-	public void setSupCode(String supCode) {
-		SupCode = supCode;
+	public void setSuppCode(String suppCode) {
+		SuppCode = suppCode;
 	}
 
-	public String getSuplierCat() {
-		return SuplierCat;
+	public String getSupplierCat() {
+		return SupplierCat;
 	}
 
-	public void setSuplierCat(String suplierCat) {
-		SuplierCat = suplierCat;
+	public void setSupplierCat(String supplierCat) {
+		SupplierCat = supplierCat;
 	}
 
 	public String getFormat() {

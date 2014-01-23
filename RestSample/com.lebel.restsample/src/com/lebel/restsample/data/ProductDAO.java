@@ -16,8 +16,11 @@ public class ProductDAO {
 		SybDataSource ds = new SybDataSource();
 		ds.setUser("dba");
 		ds.setPassword("sql");
-		ds.setServerName("pmdtestserver");
-		ds.setPortNumber(2639);
+		//ds.setServerName("pmdtestserver");
+		//ds.setPortNumber(2639);
+		//ds.setServerName("192.168.10.14");
+		ds.setServerName("localhost");
+		ds.setPortNumber(2638);
 		ds.setDatabaseName("proper3");
 		ds.setBE_AS_JDBC_COMPLIANT_AS_POSSIBLE("true");
 		ds.setFAKE_METADATA("true");
@@ -30,10 +33,10 @@ public class ProductDAO {
 		return con;
 	}
 	
-	public Product GetProductById(int id) {
+	public Product GetProductByBarcode(String barcode) {
 		final String qry = new String("SELECT p.ProductId, p.SuppCode, p.SupplierCat, p.Format, " +
 			"p.Artist, p.Title, p.ShortDesc, p.Barcode, p.OnHand, p.BinNo, " +
-			"p.Price1, p.OutOfStock FROM Product p WHERE p.ProductId = " + id);
+			"p.Price1, p.OutOfStock FROM Product p WHERE p.Barcode = " + barcode);
 		Product prod = new Product();
 		Connection dbcon = getConnection();
 		
@@ -44,17 +47,17 @@ public class ProductDAO {
 				ResultSet rs = stmt.executeQuery(qry);
 				while (rs.next()) {
 					prod.setProductId(rs.getInt("ProductId"));
-					prod.setSupCode(rs.getString("SuppCode"));
-					prod.setSupCode(rs.getString("SupplierCat"));
-					prod.setSupCode(rs.getString("Format"));
-					prod.setSupCode(rs.getString("Artist"));
-					prod.setSupCode(rs.getString("Title"));
-					prod.setSupCode(rs.getString("ShortDesc"));
-					prod.setSupCode(rs.getString("Barcode"));
-					prod.setSupCode(rs.getString("OnHand"));
-					prod.setSupCode(rs.getString("BinNo"));
-					prod.setSupCode(rs.getString("Price1"));
-					prod.setSupCode(rs.getString("OutOfStock"));
+					prod.setSuppCode(rs.getString("SuppCode"));
+					prod.setSupplierCat(rs.getString("SupplierCat"));
+					prod.setFormat(rs.getString("Format"));
+					prod.setArtist(rs.getString("Artist"));
+					prod.setTitle(rs.getString("Title"));
+					prod.setShortDescription(rs.getString("ShortDesc"));
+					prod.setBarcode(rs.getString("Barcode"));
+					prod.setOnHand(rs.getInt("OnHand"));
+					prod.setBinNo(rs.getString("BinNo"));
+					prod.setPrice1(rs.getInt("Price1"));
+					prod.setOutOfStock(rs.getInt("OutOfStock"));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -73,9 +76,10 @@ public class ProductDAO {
 	}
 	
 	public List<Product> GetTop20Products() {
-		final String qry = new String("SELECT p.ProductId, p.SuppCode, p.SupplierCat, p.Format, " +
+		final String qry = new String("SELECT TOP 20 p.ProductId, p.SuppCode, p.SupplierCat, p.Format, " +
 				"p.Artist, p.Title, p.ShortDesc, p.Barcode, p.OnHand, p.BinNo, " +
-				"p.Price1, p.OutOfStock FROM Product p WHERE p.Barcode <> '' AND p.Price1 > 0 " +
+				"p.Price1, p.OutOfStock FROM Product p WHERE p.SuppCode = 'PROP' AND " +
+				"p.Artist <> '' AND p.Title <> '' AND p.Barcode <> '' AND p.Price1 > 0 " +
 				"AND p.OnHand > 0 ORDER BY p.ProductId ASC");
 		List<Product> prodList = new ArrayList<Product>();
 		Connection dbcon = getConnection();
@@ -88,17 +92,17 @@ public class ProductDAO {
 				while (rs.next()) {
 					Product prod = new Product();
 					prod.setProductId(rs.getInt("ProductId"));
-					prod.setSupCode(rs.getString("SuppCode"));
-					prod.setSupCode(rs.getString("SupplierCat"));
-					prod.setSupCode(rs.getString("Format"));
-					prod.setSupCode(rs.getString("Artist"));
-					prod.setSupCode(rs.getString("Title"));
-					prod.setSupCode(rs.getString("ShortDesc"));
-					prod.setSupCode(rs.getString("Barcode"));
-					prod.setSupCode(rs.getString("OnHand"));
-					prod.setSupCode(rs.getString("BinNo"));
-					prod.setSupCode(rs.getString("Price1"));
-					prod.setSupCode(rs.getString("OutOfStock"));
+					prod.setSuppCode(rs.getString("SuppCode"));
+					prod.setSupplierCat(rs.getString("SupplierCat"));
+					prod.setFormat(rs.getString("Format"));
+					prod.setArtist(rs.getString("Artist"));
+					prod.setTitle(rs.getString("Title"));
+					prod.setShortDescription(rs.getString("ShortDesc"));
+					prod.setBarcode(rs.getString("Barcode"));
+					prod.setOnHand(rs.getInt("OnHand"));
+					prod.setBinNo(rs.getString("BinNo"));
+					prod.setPrice1(rs.getInt("Price1"));
+					prod.setOutOfStock(rs.getInt("OutOfStock"));
 					prodList.add(prod);
 				}
 			} catch (SQLException e) {
