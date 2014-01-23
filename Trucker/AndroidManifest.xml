@@ -29,10 +29,6 @@
             android:label="@string/title_activity_act_view_staff" >
         </activity>
         <activity
-            android:name="com.lebel.trucker.Act"
-            android:label="@string/title_activity_" >
-        </activity>
-        <activity
             android:name="com.lebel.trucker.ActProductSingleList"
             android:label="@string/title_activity_act_product_single_list" >
         </activity>

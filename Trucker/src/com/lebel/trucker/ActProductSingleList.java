@@ -59,13 +59,13 @@ public class ActProductSingleList extends Activity {
         private ArrayList<String> ProductList;
         private ConfigPersistent _config;
         private com.ianywhere.ultralitejni12.Connection _dbconn;
-        private static final int defaultPort = 9191;
-        private static final String host = "192.168.10.248";
+        private static final int defaultPort = 9393;
+        //private static final String host = "192.168.10.248";
         //private static final String host = "testserver";
-        //private static final String host = "10.0.2.2";
+        private static final String host = "10.0.2.2";
         private static final String defaultUsername = "dba";
         private static final String defaultPassword = "sql";
-        private static final String db = "brink_remote.udb";
+        private static final String db = "demo_remote.udb";
         protected ProgressDialog dialog;
         int progressIncrement = 0;
         @Override
@@ -155,9 +155,9 @@ public class ActProductSingleList extends Activity {
                 _dbconn = DatabaseManager.connect(_config);
 
                 //Sync
-                SyncParms sp = _dbconn.createSyncParms("dba", "brink_scriptversion");
+                SyncParms sp = _dbconn.createSyncParms("dba", "demo_scriptversion");
                 sp.setPassword("sql");
-                sp.setPublications("brink_publication");
+                sp.setPublications("demo_publication");
                 StreamHTTPParms httpParms = sp.getStreamParms();
                 httpParms.setHost(host);
                 httpParms.setPort(defaultPort);
@@ -165,7 +165,8 @@ public class ActProductSingleList extends Activity {
                 
 
                 //Query
-                String qry = "SELECT TOP 20 * FROM DBA.Product WHERE DBA.Product.Artist IS NOT NULL ORDER BY DBA.Product.Artist ASC";
+                //String qry = "SELECT TOP 20 * FROM DBA.Product WHERE DBA.Product.Artist IS NOT NULL ORDER BY DBA.Product.Artist ASC";
+                String qry = "SELECT TOP 500 * FROM DBA.Product p WHERE p.Artist <> '' ORDER BY p.Artist ASC";
                 com.ianywhere.ultralitejni12.PreparedStatement ps = _dbconn.prepareStatement(qry);
                 ResultSet rs = ps.executeQuery();
                 ProductList = new ArrayList<String>();
@@ -173,7 +174,8 @@ public class ActProductSingleList extends Activity {
                     System.out.println("No records found");
                 } else {
                     do {
-                        ProductList.add(rs.getString(1));
+                        //ProductList.add(rs.getString(1));
+                    	ProductList.add(rs.getString("Artist"));
                     } while (rs.next());
                     rs.close();
                     ps.close();
